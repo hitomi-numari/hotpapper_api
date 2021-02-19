@@ -1,0 +1,25 @@
+<%= form_tag(root_path,:method => 'get') do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag 'Search' %>
+<% end %>
+
+<table>
+  <% @results.each do |result| %>
+<tr>
+    <th>名前</th>
+    <td><%= result["name"] %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= result["address"] %></td>
+  </tr>
+  <tr>
+    <th>ジャンル</th>
+    <td><%= result["genre"]["name"] %></td>
+  </tr>
+  <tr>
+    <th>画像</th>
+    <td><%= image_tag result["photo"]["pc"]["l"] %></td>
+  </tr>
+  <% end %>
+</table>
