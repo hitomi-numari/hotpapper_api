@@ -1,9 +1,12 @@
-<%= form_tag(root_path,:method => 'get') do %>
-  <%= text_field_tag :search %>
-  <%= submit_tag 'Search' %>
+<%= form_with(url: root_path, method: :get, local: true) do |f| %>
+  <%= f.text_field :search %>
+  <%= select_tag :large_area, options_for_select(@large_area_select) %>
+  <%= select_tag :middle_area, options_for_select(@middle_area_select) %>
+  <%= f.submit 'Search' %>
 <% end %>
 
 <table>
+<% if @results.present? %>
   <% @results.each do |result| %>
 <tr>
     <th>名前</th>
@@ -22,4 +25,5 @@
     <td><%= image_tag result["photo"]["pc"]["l"] %></td>
   </tr>
   <% end %>
+<% end %>
 </table>
