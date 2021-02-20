@@ -16,15 +16,16 @@ class ShopsController < ApplicationController
     json = Net::HTTP.get(uri)
     @before_middle_area_select = JSON.parse(json)["results"]["middle_area"]
     @middle_area_select = @before_middle_area_select.map { |r| ["#{r['name']}", "#{r['code']}"] }
-    h = {}
+    @large_area_group = []
     @before_large_area_select.each do |l|
       a = []
       @before_middle_area_select.each do |m|
-        a << ["#{m['name']}", "#{m['code']}"] if m["large_area"]["name"] == l["name"]
+        if m["large_area"]["name"] == l["name"]
+          a << [["#{l['code']}"], ["#{m['name']}", "#{m['code']}"]]
+        end
       end
-      h[l["name"]] = a
+      @large_area_group << a
     end
-    binding.irb
     @results = nil
 
     if params[:search]

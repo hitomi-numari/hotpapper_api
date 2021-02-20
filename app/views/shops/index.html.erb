@@ -1,7 +1,9 @@
 <%= form_with(url: root_path, method: :get, local: true) do |f| %>
   <%= f.text_field :search %>
   <%= select_tag :large_area, options_for_select(@large_area_select) %>
-  <%= select_tag :middle_area, options_for_select(@middle_area_select) %>
+  <% @large_area_group.each_with_index do |group, index| %>
+    <div id="<%= group[0][0][0] %>" class="selectbox"><%= select_tag :middle_area, options_for_select(@large_area_group[index-1][0][1]) %></div>
+  <% end %>
   <%= f.submit 'Search' %>
 <% end %>
 
