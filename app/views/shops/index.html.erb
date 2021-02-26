@@ -2,7 +2,8 @@
   <%= f.text_field :search %>
   <%= select_tag :large_area, options_for_select(@large_area_select) %>
   <% @large_area_group.each_with_index do |group, index| %>
-    <div id="<%= group[0][0][0] %>" class="selectbox"><%= select_tag :middle_area, options_for_select(@large_area_group[index-1][0][1]) %></div>
+  <% binding.irb %>
+    <div id="<%= group[0][0][0] %>" class="selectbox"><%= select_tag :middle_area, options_for_select(@large_area_group[index][0][1]) %></div>
   <% end %>
   <%= f.submit 'Search' %>
 <% end %>
@@ -29,3 +30,4 @@
   <% end %>
 <% end %>
 </table>
+<%= javascript_pack_tag "shops" %>

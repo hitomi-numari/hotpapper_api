@@ -30,7 +30,7 @@ class ShopsController < ApplicationController
 
     if params[:search]
       word = params[:search]
-      word = word.gsub(/[\s　]/, ',')
+      word = word.gsub(/[\s+　+]/, ',')
       url << "&keyword=" << word#名前で検索
       url = URI.encode(url) #エスケープ
       uri = URI.parse(url)
