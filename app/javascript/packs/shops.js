@@ -6,6 +6,8 @@ $(document).on('turbolinks:load', function() {
   // 選択中の大エリアのコードと同名のIDが振られたDIV要素（中エリアセレクトボックス）のみ表示する
   $('#' + large_area_code).show();
 
+  $('option').attr('selected', false);
+  console.log($('.selectbox option:selected').length);
   // 大エリアのセレクトボックスで別のエリアを選択したら
   $('#large_area').change(function() {
   // 現在選択中の大エリアコードをlarge_area_codeに上書き
